@@ -1,32 +1,40 @@
-<section class="overflow-hidden">
-  <h2 class="text-center py-16 uppercase text-base md:text-lg lg:text-2xl">{{ section.settings.section_title }}</h2>
-  <div class="featureSwiper relative">
-    <div class="swiper-wrapper">
-      {% for block in section.blocks %}
-        <div class="swiper-slide text-center bg-gray-200">
-          {% if block.settings.image %}
-            {{ block.settings.image | image_url: width: 360, height: 360 | image_tag }}
-          {% endif %}
-          <div class="p-4 text-left">
-            {% if block.settings.title %}
-              <div class="uppercase">{{ block.settings.title }}</div>
+{% if section.settings.featured_enabled %}
+  <section class="overflow-hidden">
+    <h2 class="text-center py-16 uppercase text-base md:text-lg lg:text-2xl">{{ section.settings.section_title }}</h2>
+    <div class="featureSwiper relative">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide text-center bg-gray-200">
+            {% if block.settings.image %}
+              {{ block.settings.image | image_url: width: 360, height: 360 | image_tag }}
             {% endif %}
-            {% if block.settings.copy %}
-              <div class="capitalize text-sm py-2">{{ block.settings.copy }}</div>
-            {% endif %}
-            {% if block.settings.price %}
-              <div class="uppercase font-bold text-sm">{{ block.settings.price | money }}</div>
-            {% endif %}
+            <div class="p-4 text-left">
+              {% if block.settings.title %}
+                <div class="uppercase">{{ block.settings.title }}</div>
+              {% endif %}
+              {% if block.settings.copy %}
+                <div class="capitalize text-sm py-2">{{ block.settings.copy }}</div>
+              {% endif %}
+              {% if block.settings.price %}
+                <div class="uppercase font-bold text-sm">{{ block.settings.price | money }}</div>
+              {% endif %}
+            </div>
           </div>
-        </div>
-      {% endfor %}
-    </div>
-</section>
+        {% endfor %}
+      </div>
+  </section>  
+{% endif %}
 
 {% schema %}
   {
     "name": "Featured",
     "settings": [
+      {
+        "type": "checkbox",
+        "id": "featured_enabled",
+        "label": "Show Featured",
+        "default": true
+      },
       {
         "type": "text",
         "id": "section_title",

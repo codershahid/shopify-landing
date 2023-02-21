@@ -1,38 +1,45 @@
-<section class="py-4 md:py-6">
-  <div class="md:flex justify-between items-center mx-auto px-4 xl:px-2 space-y-2 md:space-y-0">
+{% if section.settings.header_enabled %}
+  <section class="py-4 md:py-6">
+    <div class="md:flex justify-between items-center mx-auto px-4 xl:px-2 space-y-2 md:space-y-0">
 
-    <div class="hidden md:flex justify-between items-center space-x-2 md:space-x-4">
-      {% for block in section.blocks %}
-        {% if block.type == 'social' %}
-          <a href="{{ block.settings.link }}" class="header__icon">{{ block.settings.icon }}</a>
+      <div class="hidden md:flex justify-between items-center space-x-2 md:space-x-4">
+        {% for block in section.blocks %}
+          {% if block.type == 'social' %}
+            <a href="{{ block.settings.link }}" class="header__icon">{{ block.settings.icon }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <a class="flex justify-around text-center uppercase text-3xl" href="/">
+        {% if section.settings.header_logo %}
+          {{ section.settings.header_logo }}
+        {% else %}
+          {{ shop.name }}
         {% endif %}
-      {% endfor %}
+      </a>
+
+      <div class="hidden md:flex justify-between items-center space-x-2 md:space-x-4">
+        {% for block in section.blocks %}
+          {% if block.type == 'user' %}
+            <a href="{{ block.settings.link }}" class="header__icon">{{ block.settings.icon }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
     </div>
-
-    <a class="flex justify-around text-center uppercase text-3xl" href="/">
-      {% if section.settings.header_logo %}
-        {{ section.settings.header_logo }}
-      {% else %}
-        {{ shop.name }}
-      {% endif %}
-    </a>
-
-    <div class="hidden md:flex justify-between items-center space-x-2 md:space-x-4">
-      {% for block in section.blocks %}
-        {% if block.type == 'user' %}
-          <a href="{{ block.settings.link }}" class="header__icon">{{ block.settings.icon }}</a>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-  </div>
-</section>
+  </section>
+{% endif %}
 
 {% schema %}
   {
     "name": "Header",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "header_enabled",
+        "label": "Show Header",
+        "default": true
+      }, {
         "type": "text",
         "id": "header_logo",
         "label": "logo text"

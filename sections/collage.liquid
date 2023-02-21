@@ -1,17 +1,27 @@
-<section class="grid md:grid-rows-3 h-[800px] md:grid-cols-2 gap-1 my-16">
-  {% for block in section.blocks %}
-    <div class="overflow-hidden ">
-      {% if block.settings.image %}
-        {{ block.settings.image | image_url: width: 720 | image_tag }}
-      {% endif %}
-    </div>
-  {% endfor %}
-</section>
+{% if section.settings.collage_enabled %}
+  <section class="grid md:grid-rows-3 h-[800px] md:grid-cols-2 gap-1 my-16">
+    {% for block in section.blocks %}
+      <div class="overflow-hidden ">
+        {% if block.settings.image %}
+          {{ block.settings.image | image_url: width: 720 | image_tag }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
 
 {% schema %}
   {
     "name": "Collage",
     "max_blocks": 6,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "collage_enabled",
+        "label": "Show Collage",
+        "default": true
+      }
+    ],
     "blocks": [
       {
         "name": "Image",
