@@ -1,0 +1,47 @@
+<section>
+  <div class="swiper relative">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide text-center flex items-center justify-center bg-gray-200">
+          {% if block.settings.image %}
+            {{ block.settings.image | image_url: width: 1440, height: 440 | image_tag }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-button-prev bg-white p-10 border rounded-full left-0 -translate-x-1/2 scale-75 after:pl-4"></div>
+    <div class="swiper-button-next bg-white p-10 border rounded-full right-0 translate-x-1/2 scale-75 after:pr-4"></div>
+</section>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "blocks": [
+      {
+        "name": "Slide",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+<script>
+  const swiper = new Swiper('.swiper', { // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+
+// Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  });
+</script>

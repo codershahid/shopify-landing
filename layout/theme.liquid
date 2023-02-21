@@ -9,15 +9,21 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     {{ content_for_header }}
     {{ 'tailwind.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'alpine.js' | asset_url }}" defer></script>
-    {% comment %} {{ 'application.js' | asset_url | script_tag }} {% endcomment %}
-  </head>
-  <body style="diplay: none">
-    {% section 'topbar' %}
-    {% section 'header' %}
-    {% section 'navigation' %}
-    <main role="main">
-      {{ content_for_layout }}
-    </main>
-  </body>
-</html>
+    {{ 'swiper.css' | asset_url | stylesheet_tag }}
+    <style > :root
+    {
+      --swiper-theme-color: #000;
+    }
+  </style>
+  <script src="{{ 'alpine.js' | asset_url }}" defer></script>
+  <script src="{{ 'swiper.js' | asset_url }}"></script>
+
+</head>
+<body style="diplay: none" class=" max-w-[1440px] mx-auto">
+  {% section 'topbar' %}
+  {% section 'header' %}
+  {% section 'navigation' %}
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+</body></html>
