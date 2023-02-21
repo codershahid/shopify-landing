@@ -1,0 +1,351 @@
+[data-target] {
+  cursor: pointer;
+}
+
+.icon--close {
+  display: none;
+}
+
+body.nav--open .icon--menu {
+  display: none;
+}
+
+body.nav--open .icon--close {
+  display: block;
+}
+
+.nav {
+  margin: 0 -1.2rem;
+}
+@media (min-width: 1440px) {
+  .nav {
+    margin: 0 -1.5rem;
+  }
+}
+
+.nav__list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__item {
+  margin: 0 1.2rem;
+}
+@media (min-width: 1440px) {
+  .nav__item {
+    margin: 0 1.5rem;
+  }
+}
+
+.nav__item-link {
+  position: relative;
+  display: block;
+  padding: 1.7rem 0;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  letter-spacing: 0.0625rem;
+  color: #000000;
+}
+.nav__item-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.125rem;
+  z-index: 9;
+  background-color: #626448;
+  transition: width ease-in 0.3s;
+}
+
+.nav__item--active .nav__item-link::after {
+  width: 100%;
+}
+
+.nav__item--active {
+  border-bottom: 0.0625rem solid #cecdb6;
+}
+
+.nav__item--mega:after {
+  content: "";
+  width: 100%;
+  background-color: #000c;
+  position: fixed;
+  height: 100vh;
+  top: 7.8125rem;
+  left: 0;
+  z-index: -2;
+  opacity: 0;
+  pointer-events: none;
+  cursor: text;
+  transition: opacity 0.5s ease;
+}
+
+.nav__item--active.nav__item--mega:after {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.megamenu {
+  padding: 2.5rem 6.6875rem;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background-color: #fff;
+  transform: translateY(-400px);
+  transition: transform ease 0.7s, visibility ease 0.2s;
+  z-index: -1;
+}
+
+.nav__item--active .megamenu {
+  visibility: visible;
+  transform: translateY(0);
+  -webkit-transform: translate3d(0, 0, 0);
+  pointer-events: all;
+}
+
+.megaMenu__container {
+  overflow: hidden;
+}
+
+.megamenu__inner {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-101%);
+  transition: transform ease 0.3s, opacity ease 0.3s;
+}
+
+.nav__item--active .megamenu__inner {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform ease 0.3s, opacity ease 0.3s;
+}
+
+.megamenu__block:not(:last-child) {
+  margin-right: 3rem;
+}
+@media (min-width: 1440px) {
+  .megamenu__block:not(:last-child) {
+    margin-right: 4rem;
+  }
+}
+@media (min-width: 1633px) {
+  .megamenu__block:not(:last-child) {
+    margin-right: 6rem;
+  }
+}
+
+.megaMenu__block.megaMenu__card {
+  max-width: 18.625rem;
+}
+
+.megamenu__title,
+.megaMenu__card-title {
+  font-size: 0.8125rem;
+  letter-spacing: 0.0625rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.8125rem;
+  font-weight: 400;
+}
+
+.megamenu__list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.megamenu__item-link {
+  line-height: 2rem;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+}
+
+.header__wrapper {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+  transition: top 0.5s ease;
+  transform: none;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  transition: box-shadow 0.3s ease-out;
+}
+@media (min-width: 40rem) {
+  .header {
+    padding: 0.75rem 1.25rem;
+  }
+}
+@media (min-width: 48rem) {
+  .header {
+    padding: 0.75rem 2.75rem;
+  }
+}
+@media (min-width: 85.375rem) {
+  .header {
+    padding: 0 4rem;
+  }
+}
+
+.header__menubar-toggler {
+  padding-right: 1rem;
+}
+
+.header__logo {
+  margin-right: auto;
+  width: 138px;
+}
+@media (min-width: 85.375rem) {
+  .header__logo {
+    width: 195px;
+  }
+}
+
+.header__icons {
+  margin: 0 -0.5rem;
+}
+
+.header__icon {
+  padding: 0 0.5rem;
+}
+
+.mobileNav {
+  position: absolute;
+  top: calc(100%);
+  left: 0;
+  width: 288px;
+  background-color: #fff;
+  min-height: calc(100vh - 122px);
+  overflow: auto;
+  padding-top: 1.25rem;
+  z-index: -1;
+  transform: translateX(-280px);
+  pointer-events: none;
+  transition: transform ease 1s, opacity ease 1s;
+  opacity: 0;
+}
+.nav--open .mobileNav {
+  z-index: 10;
+  opacity: 1;
+  transition: transform ease 0.5s, opacity ease 0.5s;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.mobileNav__item {
+  padding: 0.75rem 0;
+  display: block;
+  line-height: 0;
+}
+.mobileNav__item--hasSubnav {
+  margin-top: 8px;
+}
+.mobileNav__item--hasSubnav ~ .mobileNav__item {
+  margin-top: 0;
+}
+.mobileNav__item--divider {
+  margin-top: 1.75rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid "rose";
+  margin-right: 1rem;
+}
+.mobileNav__item span {
+  display: inline-block;
+  font-size: 0.8125rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  font-weight: 200;
+}
+
+.mobileNav__link {
+  color: "mink";
+  font-size: 0.8125rem;
+  letter-spacing: 0.125rem;
+  line-height: 0.8125rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  pointer-events: all;
+}
+
+.mobileNav__text {
+  color: "mink";
+  font-size: 0.8125rem;
+  letter-spacing: 0.0625rem;
+  line-height: 0.8125rem;
+}
+
+.mobileNav__list {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.mobileNav__title {
+  color: "mink";
+  font-size: 0.8125rem;
+  letter-spacing: 0.0625rem;
+  line-height: 0.8125rem;
+  font-weight: 500;
+  text-transform: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobileNav__subnav {
+  padding-left: 16px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  max-width: 100%;
+  margin-right: 16px;
+}
+
+.mobileNav__subnavList {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  padding-top: 1.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  z-index: 10;
+  transform: translateX(-280px);
+  transition: transform ease 0.5s;
+}
+.mobileNav__subnavList.is--active {
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.mobileNav__subnavItem {
+  padding-left: 2.5rem;
+}
+.mobileNav__subnavItem--back {
+  padding-left: 0;
+}
+.mobileNav__subnavItem--back svg {
+  transform: rotate(180deg);
+  margin-right: 12px;
+}
+.mobileNav__subnavItem--title {
+  padding-left: 24px;
+}
+.mobileNav__subnavItem .mobileNav__link {
+  letter-spacing: 0;
+  text-transform: none;
+  pointer-events: all;
+}

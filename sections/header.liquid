@@ -1,0 +1,84 @@
+<section class="py-4 md:py-6">
+  <div class="md:flex justify-between items-center max-w-6xl mx-auto px-2 md:px-4 space-y-2 md:space-y-0">
+
+    <div class="hidden md:flex justify-between items-center space-x-2 md:space-x-4">
+      {% for block in section.blocks %}
+        {% if block.type == 'social' %}
+          <a href="{{ block.settings.link }}" class="header__icon">{{ block.settings.icon }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <a class="flex justify-around text-center uppercase text-3xl" href="/">
+      {% if section.settings.header_logo %}
+        {{ section.settings.header_logo }}
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
+    </a>
+
+    <div class="hidden md:flex justify-between items-center space-x-2 md:space-x-4">
+      {% for block in section.blocks %}
+        {% if block.type == 'user' %}
+          <a href="{{ block.settings.link }}" class="header__icon">{{ block.settings.icon }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header_logo",
+        "label": "logo text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "social",
+        "name": "Social Icon",
+        "settings": [
+          {
+            "type": "html",
+            "id": "icon",
+            "label": "Icon Markup"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Icon Link"
+          }
+        ]
+      }, {
+        "type": "user",
+        "name": "User Icon",
+        "settings": [
+          {
+            "type": "html",
+            "id": "icon",
+            "label": "Icon Markup"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Icon Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<style>
+  .header__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .header__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>

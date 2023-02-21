@@ -1,0 +1,88 @@
+<div class="w-full text-gray-700 bg-white border">
+  <div
+    x-data="{ open: false }"
+    :class="{'absolute top-0 right-0 bottom-0 left-0 bg-white': open, '': !open}"
+    class="flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:max-w-max">
+
+    <div class="text-right items-center p-4 md:hidden">
+      <button class="rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+        {% render 'breadcrumb' %}
+      </button>
+    </div>
+
+    <nav :class="{'flex': open, 'hidden': !open}" class="relative flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:flex-row space-y-4 md:space-y-0 md:border-l">
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.links != blank %}
+          <div
+            @click.away="open = false"
+            class=""
+            x-data="{ open: false }">
+            <button @click="open = !open" class=" flex flex-row items-center w-full px-4 py-2 text-sm font-semibold text-left bg-transparent md:w-auto md:inline hover:text-black focus:text-black md:border-r">
+              <span class="capitalize">{{ link.title }}</span>
+              {% render 'carrot-down' %}
+            </button>
+            <div
+              x-show="open"
+              x-transition:enter="transition ease-out duration-100"
+              x-transition:enter-start="transform opacity-0 scale-95"
+              x-transition:enter-end="transform opacity-100 scale-100"
+              x-transition:leave="transition ease-in duration-75"
+              x-transition:leave-start="transform opacity-100 scale-100"
+              x-transition:leave-end="transform opacity-0 scale-95"
+              class="absolute right-0 w-full origin-top z-30">
+              <div class="flex justify-between px-2 py-2 md:pl-6 md:pr-36 md:py4 bg-white border">
+                <div>
+                  {% for childLink in link.links %}
+                    <a class="block px-4 py-2 text-sm capitalize font-semibold hover:text-black focus:text-black" href="{{ childLink.url }}">{{ childLink.title }}</a>
+                  {% endfor %}
+                </div>
+                <div class=" max-w-xs max-h-xs">
+                  {% for block in section.blocks %}
+                    {% assign blockName = block.settings.card_name | downcase %}
+                    {% assign linkTitle = link.title | downcase %}
+                    {% if blockName == linkTitle %}
+                      {{ block.settings.card_image | image_url: width: 200, height: 200 | image_tag }}
+                    {% endif %}
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <a class="px-4 py-2 text-sm font-semibold capitalize hover:text-black focus:text-black md:border-r" href="{{ link.url }}">{{ link.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Navigation Desk",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Primary Menu"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "card",
+        "name": "Menu Cards",
+        "settings": [
+          {
+            "type": "text",
+            "id": "card_name",
+            "label": "Card Name (Should match the menu link)"
+          }, {
+            "type": "image_picker",
+            "id": "card_image",
+            "label": "Card Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
