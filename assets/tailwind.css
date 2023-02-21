@@ -547,6 +547,9 @@ video {
 .max-w-\[\] {
   max-width: ;
 }
+.max-w-\[1400px\] {
+  max-width: 1400px;
+}
 .flex-grow {
   flex-grow: 1;
 }
@@ -629,6 +632,9 @@ video {
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -675,6 +681,9 @@ video {
 .p-12 {
   padding: 3rem;
 }
+.p-2 {
+  padding: 0.5rem;
+}
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -694,6 +703,14 @@ video {
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
+}
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 .pb-4 {
   padding-bottom: 1rem;
@@ -728,8 +745,27 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 .font-semibold {
   font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
 }
 .uppercase {
   text-transform: uppercase;
@@ -891,6 +927,23 @@ video {
 
   .md\:pr-36 {
     padding-right: 9rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+@media (min-width: 1024px) {
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 @media (min-width: 1280px) {

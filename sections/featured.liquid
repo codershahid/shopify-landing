@@ -1,0 +1,95 @@
+<section class="overflow-hidden">
+  <h2 class="text-center py-16 uppercase text-base md:text-lg lg:text-2xl">{{ section.settings.section_title }}</h2>
+  <div class="featureSwiper relative">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide text-center bg-gray-200">
+          {% if block.settings.image %}
+            {{ block.settings.image | image_url: width: 360, height: 360 | image_tag }}
+          {% endif %}
+          <div class="p-4 text-left">
+            {% if block.settings.title %}
+              <div class="uppercase">{{ block.settings.title }}</div>
+            {% endif %}
+            {% if block.settings.copy %}
+              <div class="capitalize text-sm py-2">{{ block.settings.copy }}</div>
+            {% endif %}
+            {% if block.settings.price %}
+              <div class="uppercase font-bold text-sm">{{ block.settings.price | money }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Featured",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Thumb",
+        "type": "thumb",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "copy",
+            "label": "Copy"
+          },
+          {
+            "type": "text",
+            "id": "price",
+            "label": "Price"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+<script>
+  const featureSwiper = new Swiper('.featureSwiper', { // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+
+    slidesPerView: 1.3,
+
+    breakpoints: {
+      360: {
+        slidesPerView: 1.3,
+        spaceBetween: 10
+      },
+      480: {
+        slidesPerView: 2.3,
+        spaceBetween: 30
+      },
+      640: {
+        slidesPerView: 3.3,
+        spaceBetween: 35
+      },
+      768: {
+        slidesPerView: 4.3,
+        spaceBetween: 40
+      }
+    },
+  });
+
+</script>
