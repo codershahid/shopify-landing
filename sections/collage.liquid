@@ -1,0 +1,29 @@
+<section class="grid md:grid-rows-3 h-[800px] md:grid-cols-2 gap-1 my-16">
+  {% for block in section.blocks %}
+    <div class="overflow-hidden ">
+      {% if block.settings.image %}
+        {{ block.settings.image | image_url: width: 720 | image_tag }}
+      {% endif %}
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+  {
+    "name": "Collage",
+    "max_blocks": 6,
+    "blocks": [
+      {
+        "name": "Image",
+        "type": "image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
