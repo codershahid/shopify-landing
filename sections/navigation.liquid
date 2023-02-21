@@ -1,8 +1,8 @@
-<div class="w-full text-gray-700 bg-white border">
+<div class="w-full text-gray-700 bg-white border-y">
   <div
     x-data="{ open: false }"
-    :class="{'absolute top-0 right-0 bottom-0 left-0 bg-white': open, '': !open}"
-    class="flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:max-w-max">
+    :class="{'absolute top-0 right-0 bottom-0 left-0 z-10 bg-white': open, '': !open}"
+    class="flex flex-col  mx-auto md:items-center md:justify-between md:flex-row md:max-w-max">
 
     <div class="text-right items-center p-4 md:hidden">
       <button class="rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
@@ -17,7 +17,7 @@
             @click.away="open = false"
             class=""
             x-data="{ open: false }">
-            <button @click="open = !open" class=" flex flex-row items-center w-full px-4 py-2 text-sm font-semibold text-left bg-transparent md:w-auto md:inline hover:text-black focus:text-black md:border-r">
+            <button @click="open = !open" class=" flex flex-row items-center w-full px-4 py-2 md:py-4 text-sm font-semibold text-left bg-transparent md:w-auto md:inline hover:text-black focus:text-black md:border-r">
               <span class="capitalize">{{ link.title }}</span>
               {% render 'carrot-down' %}
             </button>
@@ -50,7 +50,7 @@
             </div>
           </div>
         {% else %}
-          <a class="px-4 py-2 text-sm font-semibold capitalize hover:text-black focus:text-black md:border-r" href="{{ link.url }}">{{ link.title }}</a>
+          <a class="px-4 py-2 md:py-4 text-sm font-semibold capitalize hover:text-black focus:text-black md:border-r" href="{{ link.url }}">{{ link.title }}</a>
         {% endif %}
       {% endfor %}
     </nav>

@@ -1,6 +1,6 @@
 {% if section.settings.topbar_enabled %}
   <section class="py-2 md:py-4 bg-black md:block{% if section.settings.mobile_disabled %} hidden {% endif %}">
-    <div class="md:flex justify-between items-center max-w-6xl mx-auto px-2 md:px-4 space-y-2 md:space-y-0">
+    <div class="md:flex justify-between items-center mx-auto px-2 md:px-4 space-y-2 md:space-y-0">
       <div class="flex items-center space-x-2 md:space-x-4">
         {% for link in linklists[section.settings.topbar_left].links %}
           <a href="{{ link.url }}" class="text-xs text-white uppercase">{{ link.title }}</a>
